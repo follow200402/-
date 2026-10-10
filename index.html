@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#244b3b">
+  <meta name="description" content="2026年10月20日至25日，成都6天5晚双人慢游行程：每日路线、地图模式、导航、预约清单与预算。">
+  <title>成都慢游手账｜2026.10.20—25</title>
+  <style>
+    :root {
+      --ink: #18362c;
+      --muted: #63736c;
+      --paper: #fbf8ef;
+      --paper-2: #f2eddf;
+      --green: #244b3b;
+      --green-2: #547c67;
+      --sage: #dce6da;
+      --gold: #d99a42;
+      --orange: #dd6b3d;
+      --blue: #4e7a88;
+      --line: rgba(36, 75, 59, .14);
+      --shadow: 0 18px 50px rgba(30, 53, 43, .10);
+      --radius: 26px;
+      --safe-bottom: max(18px, env(safe-area-inset-bottom));
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% -5%, rgba(221, 107, 61, .15), transparent 25rem),
+        radial-gradient(circle at 90% 15%, rgba(78, 122, 136, .13), transparent 28rem),
+        var(--paper);
+      font-family: ui-rounded, "SF Pro Rounded", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      line-height: 1.55;
+      min-height: 100vh;
+    }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    a { color: inherit; }
+    .skip-link {
+      position: fixed; left: 12px; top: -60px; z-index: 999;
+      padding: 10px 14px; background: #fff; border-radius: 12px;
+    }
+    .skip-link:focus { top: 12px; }
+    .shell { width: min(1180px, calc(100% - 28px)); margin: 0 auto; }
+
+    .hero { padding: 24px 0 18px; }
+    .hero-card {
+      position: relative; overflow: hidden; min-height: 270px;
+      border-radius: 34px; padding: 34px;
+      color: #fff; background: linear-gradient(135deg, #1f4938 0%, #3d6b55 63%, #7e9b7d 100%);
+      box-shadow: var(--shadow);
+    }
+    .hero-card::before {
+      content: ""; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.18) 1.3px, transparent 1.3px);
+      background-size: 22px 22px; opacity: .38;
+      mask-image: linear-gradient(to left, #000, transparent 62%);
+    }
+    .hero-card::after {
+      content: "旅"; position: absolute; right: 22px; bottom: -72px;
+      font: 700 230px/1 serif; color: rgba(255,255,255,.07); transform: rotate(-7deg);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 720px; }
+    .eyebrow { margin: 0 0 14px; letter-spacing: .18em; font-size: .78rem; font-weight: 750; opacity: .78; }
+    h1 { margin: 0; font: 760 clamp(2.1rem, 7vw, 4.7rem)/1.02 ui-rounded, system-ui, sans-serif; letter-spacing: -.05em; }
+    .hero p { margin: 16px 0 0; max-width: 48rem; color: rgba(255,255,255,.86); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .btn {
+      min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 11px 16px; border: 1px solid transparent; border-radius: 999px;
+      text-decoration: none; cursor: pointer; font-weight: 720; transition: transform .2s, background .2s;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-light { background: #fff; color: var(--green); }
+    .btn-ghost { background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.34); color: #fff; }
+    .share-status { min-height: 1.5em; margin-top: 8px; font-size: .86rem; }
+
+    .info-strip { display: grid; grid-template-columns: 1.05fr 1.45fr 1fr; gap: 12px; margin-top: 14px; }
+    .info-card {
+      min-height: 118px; padding: 18px; border: 1px solid var(--line); border-radius: 22px;
+      background: rgba(255,255,255,.72); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(30,53,43,.05);
+    }
+    .info-label { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: var(--muted); font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .info-main { font-weight: 800; }
+    .info-sub { margin-top: 4px; color: var(--muted); font-size: .88rem; }
+    .flight-line { display: flex; align-items: center; gap: 10px; }
+    .flight-line + .flight-line { margin-top: 8px; }
+    .flight-date { min-width: 44px; font-weight: 800; color: var(--orange); }
+
+    .sticky-controls {
+      position: sticky; top: 0; z-index: 50; margin: 4px 0 18px; padding: 10px 0;
+      background: linear-gradient(to bottom, rgba(251,248,239,.97) 75%, transparent);
+    }
+    .date-scroller { display: flex; gap: 8px; overflow-x: auto; padding: 4px 1px 9px; scrollbar-width: none; }
+    .date-scroller::-webkit-scrollbar { display: none; }
+    .date-chip {
+      flex: 0 0 auto; min-width: 82px; min-height: 55px; padding: 7px 12px;
+      border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.78);
+      color: var(--ink); cursor: pointer; text-align: left;
+    }
+    .date-chip span, .date-chip small { display: block; }
+    .date-chip span { font-weight: 840; }
+    .date-chip small { color: var(--muted); }
+    .date-chip[aria-selected="true"] { background: var(--green); color: #fff; border-color: var(--green); box-shadow: 0 8px 20px rgba(36,75,59,.18); }
+    .date-chip[aria-selected="true"] small { color: rgba(255,255,255,.72); }
+
+    .mode-switch {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 5px;
+      border-radius: 18px; background: #eae7dc;
+    }
+    .mode-btn { min-height: 44px; border: 0; border-radius: 14px; background: transparent; color: var(--muted); font-weight: 760; cursor: pointer; }
+    .mode-btn[aria-selected="true"] { color: var(--green); background: #fff; box-shadow: 0 4px 12px rgba(36,75,59,.08); }
+
+    .day-head { display: flex; justify-content: space-between; gap: 18px; align-items: flex-end; margin: 22px 0 14px; }
+    .day-kicker { margin: 0 0 3px; color: var(--orange); font-weight: 800; font-size: .83rem; letter-spacing: .08em; }
+    .day-head h2 { margin: 0; font-size: clamp(1.55rem, 4vw, 2.4rem); letter-spacing: -.035em; }
+    .day-desc { margin: 5px 0 0; color: var(--muted); }
+    .intensity { flex: 0 0 auto; padding: 8px 12px; background: var(--sage); border-radius: 999px; font-size: .84rem; font-weight: 760; }
+    .notice {
+      display: flex; gap: 11px; margin: 0 0 16px; padding: 14px 16px;
+      border: 1px solid rgba(217,154,66,.28); border-radius: 18px; background: #fff5df; color: #6f4c1d;
+    }
+    .notice strong { display: block; }
+    .notice p { margin: 2px 0 0; font-size: .9rem; }
+
+    .panel { display: none; }
+    .panel.active { display: block; animation: reveal .28s ease-out; }
+    @keyframes reveal { from { opacity: 0; transform: translateY(4px); } }
+    .overview-grid { display: grid; grid-template-columns: 1.35fr .65fr; gap: 16px; }
+    .card { border: 1px solid var(--line); background: rgba(255,255,255,.76); border-radius: var(--radius); box-shadow: 0 10px 30px rgba(30,53,43,.055); }
+    .card-pad { padding: 22px; }
+    .section-title { margin: 0 0 14px; font-size: 1.08rem; }
+    .stop-list { display: grid; gap: 10px; }
+    .stop-compact { display: grid; grid-template-columns: 36px 1fr auto; gap: 12px; align-items: center; padding: 12px; border-radius: 17px; background: var(--paper); }
+    .stop-index { width: 36px; height: 36px; display: grid; place-items: center; color: #fff; background: var(--green); border-radius: 50%; font-weight: 850; }
+    .stop-compact strong { display: block; }
+    .stop-compact small { color: var(--muted); }
+    .nav-mini { min-height: 38px; padding: 8px 11px; color: var(--green); background: var(--sage); border-radius: 12px; text-decoration: none; font-size: .85rem; font-weight: 800; }
+    .tips { margin: 0; padding: 0; list-style: none; }
+    .tips li { padding: 11px 0; border-bottom: 1px dashed var(--line); }
+    .tips li:last-child { border-bottom: 0; }
+    .tips strong { display: block; }
+    .tips span { color: var(--muted); font-size: .9rem; }
+
+    .map-layout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(260px, .6fr); gap: 16px; }
+    .map-card { overflow: hidden; min-height: 520px; position: relative; background: #dfe9e0; }
+    .map-toolbar { position: absolute; z-index: 3; top: 15px; left: 15px; right: 15px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .map-legend { padding: 9px 12px; border: 1px solid rgba(255,255,255,.8); border-radius: 14px; background: rgba(255,255,255,.90); box-shadow: 0 6px 18px rgba(30,53,43,.10); font-size: .8rem; }
+    .map-canvas { width: 100%; height: 520px; display: block; }
+    .map-bg { fill: url(#mapGradient); }
+    .map-road { fill: none; stroke: rgba(255,255,255,.72); stroke-width: 17; stroke-linecap: round; }
+    .map-road-thin { fill: none; stroke: rgba(36,75,59,.09); stroke-width: 2; stroke-dasharray: 5 8; }
+    .route-line { fill: none; stroke: var(--orange); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 7 10; animation: dash 24s linear infinite; }
+    @keyframes dash { to { stroke-dashoffset: -180; } }
+    .marker { cursor: pointer; }
+    .marker circle { fill: #fff; stroke: var(--green); stroke-width: 4; filter: drop-shadow(0 5px 5px rgba(25,54,44,.22)); }
+    .marker text { fill: var(--green); font-size: 14px; font-weight: 850; dominant-baseline: middle; text-anchor: middle; pointer-events: none; }
+    .marker-label { fill: var(--ink); font-size: 12px; font-weight: 750; paint-order: stroke; stroke: rgba(255,255,255,.94); stroke-width: 5px; stroke-linejoin: round; }
+    .map-note { fill: rgba(36,75,59,.46); font-size: 12px; letter-spacing: .08em; }
+    .map-side { padding: 20px; }
+    .route-order { margin: 0; padding: 0; list-style: none; }
+    .route-order li { position: relative; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding-bottom: 18px; }
+    .route-order li:not(:last-child)::after { content:""; position:absolute; left:14px; top:31px; bottom:4px; width:2px; background:var(--line); }
+    .route-order b { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: var(--green); color: #fff; }
+    .route-order strong, .route-order small { display:block; }
+    .route-order small { color:var(--muted); }
+
+    .timeline { position: relative; padding-left: 22px; }
+    .timeline::before { content:""; position:absolute; left: 37px; top: 22px; bottom: 24px; width:2px; background: linear-gradient(var(--orange), var(--sage)); }
+    .timeline-item { position:relative; display:grid; grid-template-columns: 84px minmax(0,1fr); gap:16px; padding: 0 0 15px; }
+    .timeline-time { position:relative; z-index:1; align-self:start; padding: 8px 8px; border-radius: 13px; color:#fff; background:var(--green); text-align:center; font-size:.8rem; font-weight:850; box-shadow: 0 5px 12px rgba(36,75,59,.13); }
+    .timeline-card { padding:18px; }
+    .timeline-top { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+    .timeline-card h3 { margin:0; font-size:1.07rem; }
+    .timeline-card p { margin:6px 0 0; color:var(--muted); font-size:.9rem; }
+    .transit { display:flex; flex-wrap:wrap; gap:7px; margin-top:13px; }
+    .pill { padding:6px 9px; border-radius:999px; background:var(--paper-2); color:var(--ink); font-size:.79rem; font-weight:700; }
+    .pill.warn { background:#fff0cd; color:#865619; }
+    .route-nav { flex:0 0 auto; min-width:68px; min-height:40px; display:inline-flex; align-items:center; justify-content:center; gap:5px; border-radius:13px; background:var(--sage); color:var(--green); text-decoration:none; font-size:.85rem; font-weight:850; }
+
+    .planner { display:grid; grid-template-columns:1.1fr .9fr; gap:16px; margin:38px 0 120px; }
+    .planner .card { padding:22px; }
+    .checklist { display:grid; gap:9px; }
+    .check-row { display:grid; grid-template-columns:26px 1fr auto; gap:10px; align-items:start; padding:12px; border:1px solid var(--line); border-radius:16px; background:var(--paper); cursor:pointer; }
+    .check-row input { width:20px; height:20px; accent-color:var(--green); }
+    .check-row strong, .check-row small { display:block; }
+    .check-row small { color:var(--muted); }
+    .badge { padding:4px 7px; border-radius:999px; background:#fee8dc; color:#a94723; font-size:.7rem; font-weight:850; white-space:nowrap; }
+    .badge.ok { background:var(--sage); color:var(--green); }
+    .official-links { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+    .official-links a { padding:8px 11px; border-radius:12px; background:var(--sage); text-decoration:none; font-size:.84rem; font-weight:760; }
+    .budget { width:100%; border-collapse:collapse; }
+    .budget td { padding:10px 2px; border-bottom:1px dashed var(--line); }
+    .budget td:last-child { text-align:right; font-weight:760; }
+    .budget tr:last-child td { border:0; padding-top:14px; font-size:1.05rem; color:var(--orange); }
+    .footnote { color:var(--muted); font-size:.8rem; }
+    footer { margin: -76px 0 90px; text-align:center; color:var(--muted); font-size:.84rem; }
+
+    .bottom-nav { display:none; }
+    .sr-only { position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; white-space:nowrap!important; border:0!important; }
+    :focus-visible { outline:3px solid rgba(221,107,61,.6); outline-offset:3px; }
+
+    @media (max-width: 820px) {
+      .shell { width:min(100% - 20px, 680px); }
+      .hero { padding-top:10px; }
+      .hero-card { min-height:300px; padding:27px 22px; border-radius:28px; }
+      .info-strip, .overview-grid, .map-layout, .planner { grid-template-columns:1fr; }
+      .info-card { min-height:auto; }
+      .sticky-controls { top:0; margin-bottom:10px; padding-top:7px; }
+      .day-head { align-items:flex-start; }
+      .map-card, .map-canvas { min-height:440px; height:440px; }
+      .map-layout { gap:10px; }
+      .planner { margin-bottom:105px; }
+    }
+    @media (max-width: 560px) {
+      body { padding-bottom:84px; }
+      .hero-card::after { font-size:170px; }
+      .hero-actions { display:grid; grid-template-columns:1fr 1fr; }
+      .btn { padding-inline:12px; }
+      .mode-switch { display:none; }
+      .day-head { display:block; }
+      .intensity { display:inline-block; margin-top:10px; }
+      .card-pad { padding:17px; }
+      .stop-compact { grid-template-columns:34px 1fr; }
+      .stop-compact .nav-mini { grid-column:2; justify-self:start; }
+      .timeline { padding-left:0; }
+      .timeline::before { left:17px; }
+      .timeline-item { grid-template-columns:66px minmax(0,1fr); gap:10px; }
+      .timeline-time { margin-left:0; font-size:.72rem; padding-inline:5px; }
+      .timeline-card { padding:15px; }
+      .timeline-top { display:block; }
+      .route-nav { margin-top:11px; }
+      .bottom-nav {
+        position:fixed; z-index:100; left:10px; right:10px; bottom:var(--safe-bottom);
+        display:grid; grid-template-columns:repeat(3,1fr); padding:6px; border:1px solid rgba(255,255,255,.65);
+        border-radius:21px; background:rgba(31,73,56,.94); color:#fff; box-shadow:0 16px 45px rgba(24,54,44,.32); backdrop-filter:blur(16px);
+      }
+      .bottom-nav button { min-height:50px; border:0; border-radius:15px; background:transparent; color:rgba(255,255,255,.7); font-weight:760; }
+      .bottom-nav button[aria-selected="true"] { background:#fff; color:var(--green); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior:auto!important; animation-duration:.001ms!important; animation-iteration-count:1!important; transition-duration:.001ms!important; }
+    }
+    @media print {
+      body { background:#fff; }
+      .sticky-controls, .bottom-nav, .hero-actions, .nav-mini, .route-nav { display:none!important; }
+      .panel { display:block!important; break-inside:avoid; }
+      .map-card { min-height:420px; }
+      .shell { width:100%; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要行程</a>
+  <header class="hero shell">
+    <section class="hero-card" aria-labelledby="page-title">
+      <div class="hero-content">
+        <p class="eyebrow">CHENGDU · 6 DAYS 5 NIGHTS</p>
+        <h1 id="page-title">成都慢游手账</h1>
+        <p>2026.10.20—25 · 两个人的秋日行程。把每天的路线、交通、导航和预约放进一张随身可查的小地图。</p>
+        <div class="hero-actions">
+          <button class="btn btn-light" id="todayBtn" type="button">查看第一天</button>
+          <button class="btn btn-ghost" id="shareBtn" type="button">分享给同伴</button>
+        </div>
+        <div class="share-status" id="shareStatus" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+    <section class="info-strip" aria-label="旅行关键信息">
+      <article class="info-card">
+        <div class="info-label">🏨 住宿 · 5晚</div>
+        <div class="info-main">汉庭成都太古里春熙路步行街酒店</div>
+        <div class="info-sub">10月20日入住 · 10月25日退房<br>同名门店较多，请以订单地址为准</div>
+      </article>
+      <article class="info-card">
+        <div class="info-label">✈️ 已订航班</div>
+        <div class="flight-line"><span class="flight-date">10.20</span><span><b>MU2653</b> · 15:30—17:35<br><small>武汉天河T3 → 成都天府T2</small></span></div>
+        <div class="flight-line"><span class="flight-date">10.25</span><span><b>MU2525</b> · 13:15—15:15<br><small>成都天府T2 → 武汉天河T3</small></span></div>
+      </article>
+      <article class="info-card">
+        <div class="info-label">🌿 旅行节奏</div>
+        <div class="info-main">4个完整游玩日</div>
+        <div class="info-sub">天府新区 · 三星堆 · 九寨沟 · 都江堰<br>九寨沟日强度最高，其余留有弹性</div>
+      </article>
+    </section>
+  </header>
+
+  <main id="main" class="shell">
+    <section class="sticky-controls" aria-label="行程筛选">
+      <div class="date-scroller" id="dateTabs" role="tablist" aria-label="选择日期"></div>
+      <div class="mode-switch" id="modeSwitch" role="tablist" aria-label="选择查看模式">
+        <button class="mode-btn" data-mode="overview" role="tab" aria-selected="true">今日概览</button>
+        <button class="mode-btn" data-mode="map" role="tab" aria-selected="false">地图模式</button>
+        <button class="mode-btn" data-mode="route" role="tab" aria-selected="false">每日路线</button>
+      </div>
+    </section>
+
+    <section aria-live="polite" aria-atomic="true">
+      <div class="day-head">
+        <div><p class="day-kicker" id="dayKicker"></p><h2 id="dayTitle"></h2><p class="day-desc" id="dayDesc"></p></div>
+        <div class="intensity" id="dayIntensity"></div>
+      </div>
+      <div id="dayNotice"></div>
+    </section>
+
+    <section class="panel active" id="overviewPanel" aria-labelledby="dayTitle"></section>
+    <section class="panel" id="mapPanel" aria-label="地图模式"></section>
+    <section class="panel" id="routePanel" aria-label="每日路线模式"></section>
+
+    <section class="planner" id="planner">
+      <article class="card">
+        <h2 class="section-title">出发前预约清单</h2>
+        <div class="notice"><span>⚠️</span><div><strong>九寨沟先核实交通，再买门票</strong><p>高铁、车站接驳、返程衔接必须形成可执行闭环；当前未记录任何已确认班次。</p></div></div>
+        <div class="checklist" id="checklist"></div>
+        <div class="official-links">
+          <a href="https://www.12306.cn/" target="_blank" rel="noopener">铁路12306 ↗</a>
+          <a href="https://www.jiuzhai.com/" target="_blank" rel="noopener">九寨沟官网 ↗</a>
+          <a href="https://www.sxd.cn/" target="_blank" rel="noopener">三星堆官网 ↗</a>
+        </div>
+        <p class="footnote">票价、开放时间及库存会变化，请以2026年10月出行前官方页面为准。</p>
+      </article>
+      <article class="card">
+        <h2 class="section-title">两人预算 · 不含机票与成都酒店</h2>
+        <table class="budget" aria-label="两人预计预算">
+          <tbody>
+            <tr><td>日常餐饮</td><td>¥700—1,100</td></tr>
+            <tr><td>市内交通</td><td>¥250—450</td></tr>
+            <tr><td>三星堆门票与往返</td><td>¥244—444</td></tr>
+            <tr><td>九寨沟门票、观光车与往返</td><td>¥1,160—1,660</td></tr>
+            <tr><td>都江堰门票与往返</td><td>¥260—460</td></tr>
+            <tr><td>其他</td><td>¥200—400</td></tr>
+            <tr><td><strong>合计参考</strong></td><td>¥2,814—3,854</td></tr>
+          </tbody>
+        </table>
+        <p class="footnote">以上沿用原行程规划预算，仅供准备资金，不是实时价格。建议两人额外准备 ¥3,500—4,500。</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="shell">路线位置为便于快速理解的示意图；实际出行请点击“导航”并以地图实时结果、官方票务与交通通知为准。</footer>
+
+  <nav class="bottom-nav" id="bottomNav" aria-label="移动端查看模式">
+    <button data-mode="overview" aria-selected="true">概览</button>
+    <button data-mode="map" aria-selected="false">地图</button>
+    <button data-mode="route" aria-selected="false">路线</button>
+  </nav>
+
+  <script>
+    const amap = name => `https://uri.amap.com/search?keyword=${encodeURIComponent(name)}&callnative=1`;
+
+    const days = [
+      {
+        date: '10.20', weekday: '周二', label: '抵达日', title: '初见成都，太古里夜游', desc: '落地、入住、散步吃饭，不给第一晚排太满。', intensity: '轻松 · ★', color: '#dd6b3d',
+        tips: [
+          ['今晚吃什么', '太古里附近川菜：马旺子·川小馆 / 饕林餐厅；到店先看排队。'],
+          ['行走距离', 'Citywalk 约1.5—2公里，累了随时回酒店。'],
+          ['早点休息', '第一晚不熬夜，为后面远途日留体力。']
+        ],
+        stops: [
+          { time:'17:35', name:'成都天府国际机场 T2', short:'天府机场', transport:'飞机抵达', duration:'取行李约30—45分钟', detail:'MU2653 预计17:35抵达；航班信息已订，仍以当天实际动态为准。', x:84, y:82 },
+          { time:'18:30', name:'前往春熙路商圈酒店', short:'酒店', transport:'地铁18号线＋1号线＋3号线', duration:'约75—100分钟', detail:'天府机场T2 → 火车南站 → 省体育馆 → 春熙路；行李多可打车，约60—90分钟。', x:45, y:41 },
+          { time:'20:00', name:'太古里附近晚餐', short:'晚餐', transport:'步行', duration:'约1小时', detail:'第一顿建议川菜，不必跨城区追网红店。', x:50, y:36 },
+          { time:'21:00', name:'春熙路 · IFS熊猫 · 太古里 · 大慈寺外围', short:'太古里夜游', transport:'步行 Citywalk', duration:'约1小时', detail:'慢慢逛一圈后回酒店，全程约1.5—2公里。', x:57, y:32 }
+        ]
+      },
+      {
+        date:'10.21', weekday:'周三', label:'天府新区', title:'西博城与兴隆湖 Citywalk', desc:'上午看现代建筑，下午沿湖散步，九眼桥按体力决定。', intensity:'舒展 · ★★', color:'#4e7a88',
+        tips:[
+          ['打卡重点', '西博城、天府国际会议中心内部可能受展会或会议限制，外观打卡更稳妥。'],
+          ['兴隆湖', '只选一段湖岸走2—3公里，不必完整绕湖。'],
+          ['晚间弹性', '九眼桥为可选项；累了就直接回酒店。']
+        ],
+        stops:[
+          { time:'09:00', name:'汉庭成都太古里春熙路步行街酒店', short:'酒店出发', transport:'地铁3号线→1号线', duration:'约60—75分钟', detail:'春熙路 → 省体育馆换乘 → 西博城；具体出口按当天开放入口选择。', x:44, y:28 },
+          { time:'10:15', name:'中国西部国际博览城', short:'西博城', transport:'步行打卡', duration:'约45—60分钟', detail:'以建筑外观和入口广场为主；展馆能否进入取决于当天活动。', x:49, y:61 },
+          { time:'11:30', name:'天府国际会议中心', short:'会议中心', transport:'打车或地铁接驳', duration:'路上约10—20分钟', detail:'外观与广场拍照，内部可能因会议限制进入。', x:57, y:65 },
+          { time:'12:30', name:'天府新区午餐与休息', short:'午餐', transport:'步行 / 短途打车', duration:'约1.5小时', detail:'就近选商场吃川菜、冒菜或面食。', x:61, y:61 },
+          { time:'14:00', name:'兴隆湖湿地公园', short:'兴隆湖', transport:'打车 / 地铁接驳', duration:'约2.5小时', detail:'湖边散步、喝咖啡、看湖景；只走舒适的一段。', x:72, y:69 },
+          { time:'19:00', name:'安顺廊桥 · 九眼桥', short:'九眼桥', transport:'返回市区后打车', duration:'可选 · 约1小时', detail:'安顺廊桥→锦江河边→九眼桥；若白天疲惫就取消。', x:50, y:34, optional:true }
+        ]
+      },
+      {
+        date:'10.22', weekday:'周四', label:'古蜀文明', title:'三星堆与成都老城', desc:'上午沉浸看古蜀文明，下午回城后按体力二选一或顺路慢逛。', intensity:'充实 · ★★★', color:'#d99a42',
+        tips:[
+          ['更轻松的交通', '两人可考虑春熙路直接打车去三星堆，减少换乘与候车。'],
+          ['参观时间', '三星堆建议留3—4小时；优先预约上午入馆。'],
+          ['留有取舍', '若三星堆看得久，文殊院和宽窄巷子只选一个。']
+        ],
+        stops:[
+          { time:'08:30', name:'酒店出发前往三星堆博物馆', short:'酒店出发', transport:'推荐打车；或成都东站高铁＋打车', duration:'直达约60—90分钟', detail:'高铁方案整体需预留1.5—2小时；具体车次尚未记录为已确认。', x:45, y:73 },
+          { time:'10:00', name:'三星堆博物馆', short:'三星堆', transport:'馆内步行', duration:'约3—4小时', detail:'重点：青铜神树、纵目面具、黄金面具、青铜大立人。成人票参考¥72，以官方购票页为准。', x:68, y:25 },
+          { time:'13:30', name:'广汉午餐后返回成都', short:'广汉午餐', transport:'打车 / 高铁接驳', duration:'约1.5小时', detail:'可尝试广汉缠丝兔、连山回锅肉或川味家常菜。', x:61, y:31 },
+          { time:'15:30', name:'文殊院 · 文殊坊', short:'文殊院', transport:'市内打车', duration:'约1.5小时', detail:'古建筑、红墙、街区小吃；可尝甜水面和凉粉。', x:47, y:66 },
+          { time:'17:30', name:'宽窄巷子', short:'宽窄巷子', transport:'打车约15—25分钟', duration:'约1—1.5小时', detail:'宽巷子→窄巷子→井巷子；晚餐建议在外围。', x:38, y:70, optional:true }
+        ]
+      },
+      {
+        date:'10.23', weekday:'周五', label:'九寨沟', title:'九寨沟一日往返挑战', desc:'全程只是一份目标时间表；高铁、接驳与回程均须单独核实。', intensity:'高强度 · ★★★★★', color:'#4e7a88',
+        warning:'待核实：目前没有已确认的2026年10月23日成都往返高铁或高铁站—九寨沟景区接驳班次。若无法保证至少4—5小时游览，不建议强行一日往返。',
+        tips:[
+          ['购票顺序', '先查高铁 → 再核实接驳 → 计算可游览时间 → 最后买景区门票。'],
+          ['景点优先级', '五花海 ＞ 珍珠滩瀑布 ＞ 诺日朗瀑布 ＞ 五彩池、长海。'],
+          ['装备', '保暖外套、运动鞋、充电宝、身份证、防晒和少量补给。']
+        ],
+        stops:[
+          { time:'05:30', name:'酒店出发前往成都高铁站', short:'酒店出发', transport:'打车 / 地铁', duration:'目标预留约1小时', detail:'具体出发站取决于最终车票。以下均为规划窗口，不是确认班次。', x:45, y:77, pending:true },
+          { time:'06:30', name:'成都 → 黄龙九寨站或松潘站', short:'高铁', transport:'高铁 · 待核实', duration:'目标窗口约2.5小时', detail:'车次、出发站、到达站与到站时间全部待12306核实。', x:41, y:65, pending:true },
+          { time:'09:00', name:'高铁站 → 九寨沟景区', short:'接驳车', transport:'景区方向接驳 · 待核实', duration:'通常需约1.5—2.5小时', detail:'黄龙九寨站并不在景区门口；接驳班次、上车点和返程必须成套确认。', x:55, y:45, pending:true },
+          { time:'11:00', name:'九寨沟核心景区', short:'九寨沟', transport:'景区观光车＋栈道步行', duration:'目标约4—5小时', detail:'根据当天观光车调度取舍景点，不要试图走完整个Y字形景区。', x:67, y:25 },
+          { time:'15:30', name:'九寨沟景区 → 高铁站', short:'返程接驳', transport:'接驳车 · 待核实', duration:'目标窗口约2—2.5小时', detail:'必须预留路况、停靠与进站时间，不能仅按理想车程计算。', x:59, y:48, pending:true },
+          { time:'18:00', name:'高铁站 → 成都', short:'返程高铁', transport:'高铁 · 待核实', duration:'目标窗口约3.5小时', detail:'必须确认能衔接接驳车的真实返程车次。', x:38, y:68, pending:true },
+          { time:'22:00', name:'返回酒店休息', short:'酒店', transport:'市内接驳', duration:'时间仅为目标', detail:'实际到达时间取决于最终交通组合。', x:49, y:80, pending:true }
+        ]
+      },
+      {
+        date:'10.24', weekday:'周六', label:'都江堰', title:'水利工程与灌县古城', desc:'不叠加青城山，给九寨沟后的身体留一点余地。', intensity:'适中 · ★★★', color:'#547c67',
+        tips:[
+          ['车站区别', '离堆公园站与都江堰站不是同一站；离堆公园站通常更靠近古城和南桥。'],
+          ['游览重点', '鱼嘴、飞沙堰、宝瓶口、安澜索桥。'],
+          ['晚间安排', '人民公园为可选；返城晚就直接回酒店整理行李。']
+        ],
+        stops:[
+          { time:'09:30', name:'酒店出发前往都江堰', short:'酒店出发', transport:'地铁到犀浦＋城际动车', duration:'整体约1.5—2小时', detail:'优先查离堆公园站；也可两人直接打车，约1—1.5小时。具体动车未记录为已确认。', x:68, y:72 },
+          { time:'11:00', name:'都江堰景区', short:'都江堰', transport:'景区步行', duration:'约2—3小时', detail:'看鱼嘴、飞沙堰、宝瓶口与安澜索桥；成人票参考¥80，以购票页为准。', x:27, y:34 },
+          { time:'13:30', name:'灌县古城 · 南桥', short:'灌县古城', transport:'步行', duration:'午餐＋闲逛约1.5小时', detail:'可尝甜水面、叶儿粑、钟水饺、川味凉粉。', x:34, y:39 },
+          { time:'15:00', name:'返回成都', short:'返程', transport:'城际动车＋地铁 / 打车', duration:'约1.5—2小时', detail:'早点回城，为第二天返程留出整理行李时间。', x:54, y:57 },
+          { time:'18:00', name:'人民公园 · 鹤鸣茶社', short:'人民公园', transport:'市内打车 / 地铁', duration:'可选', detail:'若17点后才回到市区就不再安排；直接回酒店更轻松。', x:63, y:68, optional:true }
+        ]
+      },
+      {
+        date:'10.25', weekday:'周日', label:'返程日', title:'早餐后从容去机场', desc:'不安排远距离景点，留足天府机场路程和安检时间。', intensity:'轻松 · ★', color:'#dd6b3d',
+        tips:[
+          ['早餐', '酒店附近吃肥肠粉、担担面，控制时间和辣度。'],
+          ['出发底线', '建议09:00前离开酒店，至少提前2小时抵达机场。'],
+          ['航班', 'MU2525 13:15起飞，以当天实际航班动态为准。']
+        ],
+        stops:[
+          { time:'07:30', name:'酒店附近早餐', short:'早餐', transport:'步行', duration:'约45分钟', detail:'简单吃一点，避免排长队。', x:43, y:33 },
+          { time:'08:15', name:'整理行李 · 退房', short:'退房', transport:'—', duration:'约30分钟', detail:'检查身份证、充电器与随身物品。', x:47, y:37 },
+          { time:'08:45', name:'酒店 → 成都天府国际机场 T2', short:'去机场', transport:'地铁18号线接驳 / 打车', duration:'预留约1.5小时', detail:'建议09:00前出发；当天线路与路况以实时导航为准。', x:65, y:60 },
+          { time:'10:30', name:'成都天府国际机场 T2', short:'天府机场', transport:'值机＋安检', duration:'预留约2小时45分钟', detail:'目标10:30左右到达机场。', x:80, y:76 },
+          { time:'13:15', name:'MU2525 成都 → 武汉', short:'返程航班', transport:'飞机', duration:'13:15—15:15', detail:'成都天府T2 → 武汉天河T3；航班已订。', x:88, y:84 }
+        ]
+      }
+    ];
+
+    const checklistItems = [
+      { id:'jiuzhai-rail', title:'核实九寨沟往返高铁', note:'12306查询10月23日真实可售车次', urgent:true },
+      { id:'jiuzhai-shuttle', title:'核实九寨沟站点接驳', note:'确认去程、回程、上车点与余量', urgent:true },
+      { id:'jiuzhai-ticket', title:'预约九寨沟门票＋观光车', note:'交通闭环可行后再购票', urgent:true },
+      { id:'sanxingdui', title:'预约三星堆上午票', note:'参考成人票¥72，以官方为准', urgent:true },
+      { id:'dujiangyan', title:'确认都江堰门票与城际动车', note:'优先比较离堆公园站班次', urgent:false },
+      { id:'venue', title:'查看西博城与会议中心活动', note:'确认10月21日开放入口与内部限制', urgent:false },
+      { id:'hotel-address', title:'核对汉庭酒店准确地址', note:'春熙路商圈同名门店较多', urgent:false },
+      { id:'weather', title:'出发前查看天气与穿衣', note:'重点关注九寨沟温差与降雨', urgent:false }
+    ];
+
+    let selectedDay = 0;
+    let selectedMode = 'overview';
+
+    const $ = selector => document.querySelector(selector);
+    const $$ = selector => [...document.querySelectorAll(selector)];
+    const escapeHtml = value => String(value).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+
+    function renderDateTabs() {
+      $('#dateTabs').innerHTML = days.map((d, i) => `
+        <button class="date-chip" type="button" role="tab" aria-selected="${i === selectedDay}" aria-controls="overviewPanel" data-day="${i}">
+          <span>${d.date}</span><small>${d.weekday} · ${d.label}</small>
+        </button>`).join('');
+      $$('.date-chip').forEach(btn => btn.addEventListener('click', () => selectDay(Number(btn.dataset.day), true)));
+    }
+
+    function renderHeader(day) {
+      $('#dayKicker').textContent = `${day.date} · ${day.weekday} · ${day.label}`;
+      $('#dayTitle').textContent = day.title;
+      $('#dayDesc').textContent = day.desc;
+      $('#dayIntensity').textContent = day.intensity;
+      $('#dayNotice').innerHTML = day.warning ? `<div class="notice"><span aria-hidden="true">⚠️</span><div><strong>交通尚未确认</strong><p>${escapeHtml(day.warning)}</p></div></div>` : '';
+    }
+
+    function renderOverview(day) {
+      const stops = day.stops.map((s, i) => `
+        <div class="stop-compact">
+          <div class="stop-index">${i + 1}</div>
+          <div><strong>${escapeHtml(s.short)}</strong><small>${escapeHtml(s.time)} · ${escapeHtml(s.transport)}${s.optional ? ' · 可选' : ''}</small></div>
+          <a class="nav-mini" href="${amap(s.name)}" target="_blank" rel="noopener" aria-label="在高德地图中查找${escapeHtml(s.name)}">导航 ↗</a>
+        </div>`).join('');
+      const tips = day.tips.map(t => `<li><strong>${escapeHtml(t[0])}</strong><span>${escapeHtml(t[1])}</span></li>`).join('');
+      $('#overviewPanel').innerHTML = `<div class="overview-grid">
+        <article class="card card-pad"><h3 class="section-title">今天按这个顺序走</h3><div class="stop-list">${stops}</div></article>
+        <aside class="card card-pad"><h3 class="section-title">慢游提示</h3><ul class="tips">${tips}</ul></aside>
+      </div>`;
+    }
+
+    function routePath(stops) {
+      if (!stops.length) return '';
+      return stops.map((s, i) => `${i ? 'L' : 'M'} ${s.x * 7.6 + 20} ${s.y * 4.7 + 18}`).join(' ');
+    }
+
+    function renderMap(day) {
+      const markers = day.stops.map((s, i) => {
+        const x = s.x * 7.6 + 20, y = s.y * 4.7 + 18;
+        const labelX = x > 600 ? x - 18 : x + 18;
+        const anchor = x > 600 ? 'end' : 'start';
+        return `<a class="marker" href="${amap(s.name)}" target="_blank" rel="noopener" aria-label="${i + 1} ${escapeHtml(s.name)}，打开导航">
+          <circle cx="${x}" cy="${y}" r="17"></circle><text x="${x}" y="${y + .5}">${i + 1}</text>
+          <text class="marker-label" x="${labelX}" y="${y - 23}" text-anchor="${anchor}">${escapeHtml(s.short)}</text>
+        </a>`;
+      }).join('');
+      const order = day.stops.map((s, i) => `<li><b>${i + 1}</b><div><strong>${escapeHtml(s.short)}</strong><small>${escapeHtml(s.time)} · ${escapeHtml(s.transport)}</small></div></li>`).join('');
+      $('#mapPanel').innerHTML = `<div class="map-layout">
+        <div class="card map-card">
+          <div class="map-toolbar"><span class="map-legend">路线位置示意 · 点击圆点导航</span></div>
+          <svg class="map-canvas" viewBox="0 0 800 520" role="img" aria-label="${escapeHtml(day.date)}路线位置示意图">
+            <defs><linearGradient id="mapGradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e8efe6"/><stop offset="1" stop-color="#cbdcca"/></linearGradient></defs>
+            <rect class="map-bg" width="800" height="520"/>
+            <path class="map-road" d="M-20 120 C180 230 290 90 470 190 S690 410 840 300"/>
+            <path class="map-road" d="M110 -10 C150 150 80 330 240 550"/>
+            <path class="map-road-thin" d="M0 400 C170 330 290 450 450 355 S700 190 820 220"/>
+            <path class="map-road-thin" d="M350 -20 C300 180 450 280 410 540"/>
+            <path class="route-line" d="${routePath(day.stops)}"/>
+            ${markers}
+            <text class="map-note" x="24" y="500">SCHEMATIC MAP · 非比例尺真实地图</text>
+          </svg>
+        </div>
+        <aside class="card map-side"><h3 class="section-title">路线顺序</h3><ol class="route-order">${order}</ol><p class="footnote">示意图用于理解方向与顺序，不用于精确定位。点击地点后由高德地图搜索最新位置和实时路线。</p></aside>
+      </div>`;
+    }
+
+    function renderRoute(day) {
+      const cards = day.stops.map((s, i) => `
+        <article class="timeline-item">
+          <time class="timeline-time">${escapeHtml(s.time)}</time>
+          <div class="card timeline-card">
+            <div class="timeline-top">
+              <div><h3>${i + 1}. ${escapeHtml(s.name)}</h3><p>${escapeHtml(s.detail)}</p></div>
+              <a class="route-nav" href="${amap(s.name)}" target="_blank" rel="noopener" aria-label="导航到${escapeHtml(s.name)}">导航 ↗</a>
+            </div>
+            <div class="transit"><span class="pill">${escapeHtml(s.transport)}</span><span class="pill">${escapeHtml(s.duration)}</span>${s.pending ? '<span class="pill warn">待核实</span>' : ''}${s.optional ? '<span class="pill warn">可选</span>' : ''}</div>
+          </div>
+        </article>`).join('');
+      $('#routePanel').innerHTML = `<div class="timeline">${cards}</div>`;
+    }
+
+    function selectDay(index, scrollChip = false) {
+      selectedDay = index;
+      const day = days[index];
+      renderHeader(day); renderOverview(day); renderMap(day); renderRoute(day);
+      $$('.date-chip').forEach((btn, i) => btn.setAttribute('aria-selected', i === index));
+      if (scrollChip) $(`.date-chip[data-day="${index}"]`).scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
+      try { history.replaceState(null, '', `#day-${day.date.replace('.', '-')}`); } catch {}
+    }
+
+    function setMode(mode, scroll = false) {
+      selectedMode = mode;
+      ['overview','map','route'].forEach(name => {
+        $(`#${name}Panel`).classList.toggle('active', name === mode);
+        $$(`[data-mode="${name}"]`).forEach(btn => btn.setAttribute('aria-selected', name === mode));
+      });
+      if (scroll) $('#dayTitle').scrollIntoView({ behavior:'smooth', block:'start' });
+    }
+
+    function renderChecklist() {
+      let saved = {};
+      try { saved = JSON.parse(localStorage.getItem('chengdu-trip-checklist') || '{}'); } catch {}
+      $('#checklist').innerHTML = checklistItems.map(item => `<label class="check-row">
+        <input type="checkbox" data-check="${item.id}" ${saved[item.id] ? 'checked' : ''}>
+        <span><strong>${escapeHtml(item.title)}</strong><small>${escapeHtml(item.note)}</small></span>
+        <span class="badge ${item.urgent ? '' : 'ok'}">${item.urgent ? '优先' : '提醒'}</span>
+      </label>`).join('');
+      $$('[data-check]').forEach(input => input.addEventListener('change', () => {
+        const state = {};
+        $$('[data-check]').forEach(box => state[box.dataset.check] = box.checked);
+        try { localStorage.setItem('chengdu-trip-checklist', JSON.stringify(state)); } catch {}
+      }));
+    }
+
+    async function shareTrip() {
+      const data = { title:document.title, text:'成都6天5晚慢游行程：地图、每日路线、交通与预约清单', url:location.href };
+      try {
+        if (navigator.share) await navigator.share(data);
+        else { await navigator.clipboard.writeText(location.href); $('#shareStatus').textContent = '链接已复制，可以发给同伴了。'; }
+      } catch (error) {
+        if (error.name !== 'AbortError') $('#shareStatus').textContent = '请复制浏览器地址栏中的链接分享。';
+      }
+    }
+
+    function initialDayFromHash() {
+      const match = location.hash.match(/day-(10-2[0-5])/);
+      if (!match) return 0;
+      const value = match[1].replace('-', '.');
+      return Math.max(0, days.findIndex(d => d.date === value));
+    }
+
+    renderDateTabs(); renderChecklist(); selectedDay = initialDayFromHash(); selectDay(selectedDay); setMode('overview');
+    $$('[data-mode]').forEach(btn => btn.addEventListener('click', () => setMode(btn.dataset.mode, true)));
+    $('#todayBtn').addEventListener('click', () => { selectDay(0, true); setMode('route'); });
+    $('#shareBtn').addEventListener('click', shareTrip);
+  </script>
+</body>
+</html>
