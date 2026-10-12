@@ -145,6 +145,17 @@
     .tips li:last-child { border-bottom: 0; }
     .tips strong { display: block; }
     .tips span { color: var(--muted); font-size: .9rem; }
+    .fallback-card { margin-top:16px; padding:20px 22px; border-style:dashed; background:linear-gradient(135deg, rgba(255,255,255,.84), rgba(220,230,218,.64)); }
+    .fallback-head { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+    .fallback-head h3 { margin:0; font-size:1.08rem; }
+    .fallback-head p { margin:4px 0 0; color:var(--muted); font-size:.9rem; }
+    .fallback-label { flex:0 0 auto; padding:5px 9px; border-radius:999px; background:var(--green); color:#fff; font-size:.72rem; font-weight:820; }
+    .fallback-stops { display:grid; grid-template-columns:repeat(4,1fr); gap:9px; margin-top:15px; }
+    .fallback-stop { padding:12px; border:1px solid var(--line); border-radius:15px; background:rgba(251,248,239,.86); }
+    .fallback-stop b, .fallback-stop span { display:block; }
+    .fallback-stop b { color:var(--orange); font-size:.78rem; }
+    .fallback-stop span { margin-top:3px; font-weight:720; }
+    .fallback-stop small { display:block; margin-top:4px; color:var(--muted); }
 
     .map-layout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(260px, .6fr); gap: 16px; }
     .map-card { overflow: hidden; min-height: 520px; position: relative; background: #dfe9e0; }
@@ -209,6 +220,7 @@
       .hero { padding-top:10px; }
       .hero-card { min-height:300px; padding:27px 22px; border-radius:28px; }
       .info-strip, .overview-grid, .map-layout, .planner { grid-template-columns:1fr; }
+      .fallback-stops { grid-template-columns:repeat(2,1fr); }
       .info-card { min-height:auto; }
       .sticky-controls { top:0; margin-bottom:10px; padding-top:7px; }
       .day-head { align-items:flex-start; }
@@ -239,6 +251,7 @@
         display:grid; grid-template-columns:repeat(3,1fr); padding:6px; border:1px solid rgba(255,255,255,.65);
         border-radius:21px; background:rgba(31,73,56,.94); color:#fff; box-shadow:0 16px 45px rgba(24,54,44,.32); backdrop-filter:blur(16px);
       }
+      .fallback-stops { grid-template-columns:1fr; }
       .bottom-nav button { min-height:50px; border:0; border-radius:15px; background:transparent; color:rgba(255,255,255,.7); font-weight:760; }
       .bottom-nav button[aria-selected="true"] { background:#fff; color:var(--green); }
     }
@@ -385,21 +398,26 @@
         ]
       },
       {
-        date:'10.22', weekday:'周四', label:'古蜀＋夜景', title:'三星堆、玉林路与双塔夜景', desc:'白天看古蜀文明，回酒店休息后沿成都南线依次拍夜景。', intensity:'充实 · ★★★', color:'#d99a42',
+        date:'10.22', weekday:'周四', label:'古蜀＋夜景', title:'三星堆、玉林8机位与双塔夜景', desc:'白天看古蜀文明，回酒店休息后沿玉林—金融城南线拍照，全程不折返。', intensity:'充实 · ★★★', color:'#d99a42',
         tips:[
           ['更轻松的交通', '两人可考虑春熙路直接打车去三星堆，减少换乘与候车。'],
           ['门票提醒', '三星堆日间票每日20:00放票，可提前5天预约；优先预约上午入馆。'],
+          ['天地回响', '据所提供攻略，需在官方购票小程序旁的“研学课程”分时预约；2026年10月场次、年龄限制与是否免费，以小程序实际页面为准。'],
+          ['晚餐二选一', '想轻松：玉林综合市场吃小吃后去双塔；想吃火锅：选锦城印象，但双塔与生机之塔最晚只保留一个。'],
           ['灯光待核实', '双子塔10月22日主题灯光内容尚未公布，出发前2—3天查“成都高新”官方信息。']
         ],
         stops:[
           { time:'07:30', name:'酒店出发前往三星堆博物馆', short:'酒店出发', transport:'推荐网约车；或高铁＋打车', duration:'直达约60—90分钟', detail:'高铁方案需额外预留换乘；具体车次尚未记录为已确认。', x:46, y:76 },
-          { time:'09:00', name:'三星堆博物馆', short:'三星堆', transport:'馆内步行', duration:'约4小时', detail:'重点：青铜神树、纵目面具、黄金面具、青铜大立人。成人票参考¥72，以官方购票页为准。', x:69, y:23 },
+          { time:'09:00', name:'三星堆博物馆', short:'三星堆', transport:'馆内步行', duration:'约4小时', detail:'重点：青铜神树、纵目面具、黄金面具、青铜大立人。若约到“天地回响”，按预约场次倒排展厅；该项目需在官方小程序“研学课程”另约，以实际页面为准。成人票¥72。', x:69, y:23 },
           { time:'13:00', name:'广汉午餐后返回成都', short:'广汉午餐', transport:'网约车 / 高铁接驳', duration:'约2小时', detail:'午餐后返回酒店；不要再叠加文殊院或宽窄巷子。', x:62, y:31 },
-          { time:'15:30', name:'返回酒店休息', short:'酒店休息', transport:'—', duration:'约1.5小时', detail:'给晚间南线打卡补充体力。', x:46, y:71 },
-          { time:'17:30', name:'玉林路', short:'玉林路', transport:'网约车', duration:'晚餐＋散步约1小时20分', detail:'选择顺路的小店吃晚餐，不为网红长队额外绕路。', x:35, y:58 },
-          { time:'19:50', name:'成都天府双塔 · 交子之环', short:'双子塔', transport:'网约车约20—30分钟', duration:'约50分钟', detail:'拍双塔与交子之环夜景；主题灯光秀须以当天官方公告为准。', x:57, y:61 },
-          { time:'20:55', name:'成都SKP生机之塔', short:'生机之塔', transport:'网约车约10—15分钟', duration:'约35分钟', detail:'拍摄六柱塔体夜景后直接返回酒店。', x:66, y:70 },
-          { time:'21:30', name:'返回春熙路酒店', short:'返回酒店', transport:'网约车', duration:'约30—45分钟', detail:'结束当天行程，不再追加其他夜游。', x:47, y:80 }
+          { time:'15:30', name:'返回酒店休息', short:'酒店休息', transport:'—', duration:'约1小时40分', detail:'补充体力并给手机充电；晚间步行较多，不压缩这段休息。', x:46, y:71 },
+          { time:'17:20', name:'倪家桥地铁站 E口', short:'玉林起点', transport:'地铁 / 网约车', duration:'集合约10分钟', detail:'从E口开始单向走，不在玉林街区来回找点。', x:31, y:61 },
+          { time:'17:30', name:'院子文化创意园', short:'院子文创园', transport:'步行 Citywalk', duration:'8机位约70—90分钟', detail:'院子文创园→“在成都”墙→玉芳苑熊猫涂鸦→转角隐藏墙→小猫墙→马路对面两处墙面→民谣自由墙。墙绘可能更新，按现场沿玉林西路单向寻找，不为漏掉一个机位折返。', x:35, y:58 },
+          { time:'18:50', name:'玉林综合市场', short:'玉林市场', transport:'步行', duration:'小吃约40—50分钟', detail:'可选剪刀土豆、玉米饼、烧椒面；摊位与营业状态会变化。若去锦城印象火锅，这里只少量试吃。', x:39, y:56 },
+          { time:'19:40', name:'锦城印象火锅', short:'火锅可选', transport:'步行 / 短途打车', duration:'约75—90分钟', detail:'与“双塔＋生机之塔”二选一节奏：若入座吃火锅，晚间塔景最多保留一个；先在地图选择玉林附近营业分店，排队情况以当晚为准。', x:44, y:59, optional:true },
+          { time:'19:55', name:'成都天府双塔 · 交子之环', short:'双子塔', transport:'网约车约20—30分钟', duration:'约45分钟', detail:'轻食版本按此时间出发；拍双塔与交子之环夜景，主题灯光秀以当天官方公告为准。', x:57, y:64 },
+          { time:'20:55', name:'成都SKP生机之塔', short:'生机之塔', transport:'网约车约10—15分钟', duration:'约30分钟', detail:'拍六柱塔体夜景后直接返回酒店；若前面选择完整火锅晚餐，可跳过。', x:66, y:70, optional:true },
+          { time:'21:30', name:'返回春熙路酒店', short:'返回酒店', transport:'网约车', duration:'约30—45分钟', detail:'轻食版本约21:30返程；火锅版本可能顺延约1小时，不再追加其他夜游。', x:47, y:80 }
         ]
       },
       {
@@ -408,7 +426,8 @@
         tips:[
           ['购票顺序', '先查高铁 → 再核实接驳 → 计算可游览时间 → 最后买景区门票。'],
           ['景点优先级', '五花海 ＞ 珍珠滩瀑布 ＞ 诺日朗瀑布 ＞ 五彩池、长海。'],
-          ['装备', '保暖外套、运动鞋、充电宝、身份证、防晒和少量补给。']
+          ['装备', '保暖外套、运动鞋、充电宝、身份证、防晒和少量补给。'],
+          ['不成行也不亏', '若交通闭环不成立，直接启用下方“成都松弛备用日”，不临时购买高价或衔接过紧的组合。']
         ],
         stops:[
           { time:'05:30', name:'酒店出发前往成都高铁站', short:'酒店出发', transport:'打车 / 地铁', duration:'目标预留约1小时', detail:'具体出发站取决于最终车票。以下均为规划窗口，不是确认班次。', x:45, y:77, pending:true },
@@ -418,21 +437,32 @@
           { time:'15:30', name:'九寨沟景区 → 高铁站', short:'返程接驳', transport:'接驳车 · 待核实', duration:'目标窗口约2—2.5小时', detail:'必须预留路况、停靠与进站时间，不能仅按理想车程计算。', x:59, y:48, pending:true },
           { time:'18:00', name:'高铁站 → 成都', short:'返程高铁', transport:'高铁 · 待核实', duration:'目标窗口约3.5小时', detail:'必须确认能衔接接驳车的真实返程车次。', x:38, y:68, pending:true },
           { time:'22:00', name:'返回酒店休息', short:'酒店', transport:'市内接驳', duration:'时间仅为目标', detail:'实际到达时间取决于最终交通组合。', x:49, y:80, pending:true }
-        ]
+        ],
+        fallback:{
+          title:'交通闭环不成立时：成都松弛备用日',
+          desc:'采用“放松—吃饭—公园—夜生活”的本地朋友节奏；只选就近分店，不跨城追店。',
+          stops:[
+            { time:'10:30', name:'睡到自然醒＋酒店附近按摩/足浴', detail:'常乐、金色印象仅作搜索候选；门店、价格和服务以当天页面为准。' },
+            { time:'13:00', name:'就近午餐', detail:'想吃辣可选串串，怕辣选荤豆花；不为高校周边专程折返。' },
+            { time:'15:00', name:'浣花溪公园—杜甫草堂', detail:'二选一强度：只逛公园最轻松；有兴趣再购票进草堂。' },
+            { time:'18:30', name:'望平街—太古里散步', detail:'奶茶、晚餐、茶铺按体力随选；若第一晚已逛够，直接回酒店。' }
+          ]
+        }
       },
       {
         date:'10.24', weekday:'周六', label:'熊猫谷＋都江堰', title:'熊猫谷与都江堰省力单向游', desc:'城际到离堆公园，上午看熊猫；下午从秦堰楼高进、南门低出。', intensity:'较高 · ★★★★', color:'#547c67',
         warning:'前一天为九寨沟高强度一日游。若返城过晚或明显疲惫，下午缩短为宝瓶口、离堆公园与灌县古城，不强行走完整景区。',
         tips:[
           ['买对车站', '购买“犀浦站 ↔ 离堆公园站”，不要误买都江堰站；具体城际班次以12306为准。'],
-          ['熊猫状态', '9点左右到园较合适，但投喂时间及动物活跃程度不作保证，以当天饲养安排为准。'],
+          ['熊猫谷预约', '官方现行规则为实名预约、可约近7日、成人票¥55；2026年10月最终规则以“熊猫谷”公众号为准。'],
+          ['熊猫状态', '9点左右到园较合适，但投喂时间及动物活跃程度不作保证；“休养所以不活泼”只是个别体验，不作为行程判断。'],
           ['省力关键', '打车到6号门秦堰楼入口，从最高点一路下行，南门离堆公园出口结束。']
         ],
         stops:[
           { time:'06:45', name:'酒店 → 犀浦站', short:'酒店出发', transport:'地铁2号线', duration:'约50—60分钟', detail:'想在9点左右到熊猫谷，需要比原计划更早出门。', x:65, y:76 },
           { time:'约07:50', name:'犀浦站 → 离堆公园站', short:'城际动车', transport:'城际动车 · 待核实', duration:'车程约25—30分钟', detail:'时间仅为规划窗口；务必按12306真实可售车次调整，不购买“都江堰站”。', x:51, y:63, pending:true },
           { time:'约08:30', name:'离堆公园站 → 熊猫谷', short:'打车转场', transport:'网约车', duration:'约15—25分钟', detail:'以实时路况为准；抵达后直接按单向路线游览。', x:38, y:51 },
-          { time:'09:00', name:'都江堰熊猫谷', short:'熊猫谷', transport:'园内步行', duration:'约3小时', detail:'大门→回归产房→1/2/3号大熊猫别墅→小熊猫生态放养区→出口。成人票¥55，以官方购票页为准。', x:25, y:34 },
+          { time:'09:00', name:'都江堰熊猫谷', short:'熊猫谷', transport:'园内步行', duration:'约3小时', detail:'大门→回归产房→1/2/3号大熊猫别墅→小熊猫生态放养区→出口。官方现行成人票¥55，需实名预约；投喂和动物活动均以当天安排为准。', x:25, y:34 },
           { time:'12:00', name:'熊猫谷附近午餐与休息', short:'午餐', transport:'步行 / 短途打车', duration:'约1小时15分', detail:'避免吃得太撑，为下午单向下坡路线留体力。', x:30, y:42 },
           { time:'13:15', name:'前往都江堰景区6号门秦堰楼', short:'秦堰楼入口', transport:'网约车', duration:'约30—45分钟', detail:'上车时明确“6号门秦堰楼入口”，不要送到南门。', x:41, y:38 },
           { time:'14:00', name:'都江堰景区省力路线', short:'都江堰', transport:'步行＋可选单程观光车', duration:'约3小时', detail:'秦堰楼→二王庙→安澜索桥→鱼嘴→碑亭→飞沙堰→宝瓶口→伏龙观→堰功道→南门。鱼嘴至碑亭可现场核实单程观光车（参考¥10）。', x:54, y:30 },
@@ -462,6 +492,7 @@
       { id:'jiuzhai-shuttle', title:'核实九寨沟站点接驳', note:'确认去程、回程、上车点与余量', urgent:true },
       { id:'jiuzhai-ticket', title:'预约九寨沟门票＋观光车', note:'交通闭环可行后再购票', urgent:true },
       { id:'sanxingdui', title:'预约三星堆上午票', note:'参考成人票¥72，以官方为准', urgent:true },
+      { id:'sanxingdui-film', title:'查看“天地回响”研学课程', note:'在三星堆官方小程序另约场次；费用与规则以实际页面为准', urgent:true },
       { id:'panda-valley', title:'预约熊猫谷门票', note:'10月24日上午票，成人票参考¥55', urgent:true },
       { id:'dujiangyan', title:'预约都江堰门票', note:'计划从6号门秦堰楼入口进入', urgent:false },
       { id:'lidui-rail', title:'购买犀浦↔离堆公园城际票', note:'不要误买“都江堰站”；往返留足缓冲', urgent:true },
@@ -495,6 +526,15 @@
       $('#dayNotice').innerHTML = day.warning ? `<div class="notice"><span aria-hidden="true">⚠️</span><div><strong>交通尚未确认</strong><p>${escapeHtml(day.warning)}</p></div></div>` : '';
     }
 
+    function renderFallback(fallback) {
+      if (!fallback) return '';
+      const stops = fallback.stops.map(s => `<div class="fallback-stop"><b>${escapeHtml(s.time)}</b><span>${escapeHtml(s.name)}</span><small>${escapeHtml(s.detail)}</small></div>`).join('');
+      return `<aside class="card fallback-card">
+        <div class="fallback-head"><div><h3>${escapeHtml(fallback.title)}</h3><p>${escapeHtml(fallback.desc)}</p></div><span class="fallback-label">备用方案</span></div>
+        <div class="fallback-stops">${stops}</div>
+      </aside>`;
+    }
+
     function renderOverview(day) {
       const stops = day.stops.map((s, i) => `
         <div class="stop-compact">
@@ -506,7 +546,7 @@
       $('#overviewPanel').innerHTML = `<div class="overview-grid">
         <article class="card card-pad"><h3 class="section-title">今天按这个顺序走</h3><div class="stop-list">${stops}</div></article>
         <aside class="card card-pad"><h3 class="section-title">慢游提示</h3><ul class="tips">${tips}</ul></aside>
-      </div>`;
+      </div>${renderFallback(day.fallback)}`;
     }
 
     function routePath(stops) {
@@ -556,7 +596,7 @@
             <div class="transit"><span class="pill">${escapeHtml(s.transport)}</span><span class="pill">${escapeHtml(s.duration)}</span>${s.pending ? '<span class="pill warn">待核实</span>' : ''}${s.optional ? '<span class="pill warn">可选</span>' : ''}</div>
           </div>
         </article>`).join('');
-      $('#routePanel').innerHTML = `<div class="timeline">${cards}</div>`;
+      $('#routePanel').innerHTML = `<div class="timeline">${cards}</div>${renderFallback(day.fallback)}`;
     }
 
     function selectDay(index, scrollChip = false) {
