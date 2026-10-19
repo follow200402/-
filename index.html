@@ -1,6 +1,5 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#244b3b">
@@ -303,7 +302,25 @@
 
   <main id="main" class="shell">
     <section class="sticky-controls" aria-label="行程筛选">
-      <div class="date-scroller" id="dateTabs" role="tablist" aria-label="选择日期"></div>
+      <div class="date-scroller" id="dateTabs" role="tablist" aria-label="选择日期">
+        <button class="date-chip" type="button" role="tab" aria-selected="true" aria-controls="overviewPanel" data-day="0">
+          <span>10.20</span><small>周二 · 抵达日</small>
+        </button>
+        <button class="date-chip" type="button" role="tab" aria-selected="false" aria-controls="overviewPanel" data-day="1">
+          <span>10.21</span><small>周三 · 签到＋南城夜景</small>
+        </button>
+        <button class="date-chip" type="button" role="tab" aria-selected="false" aria-controls="overviewPanel" data-day="2">
+          <span>10.22</span><small>周四 · 古蜀＋工业风</small>
+        </button>
+        <button class="date-chip" type="button" role="tab" aria-selected="false" aria-controls="overviewPanel" data-day="3">
+          <span>10.23</span><small>周五 · 咖啡＋人文</small>
+        </button>
+        <button class="date-chip" type="button" role="tab" aria-selected="false" aria-controls="overviewPanel" data-day="4">
+          <span>10.24</span><small>周六 · 熊猫谷＋都江堰</small>
+        </button>
+        <button class="date-chip" type="button" role="tab" aria-selected="false" aria-controls="overviewPanel" data-day="5">
+          <span>10.25</span><small>周日 · 返程日</small>
+        </button></div>
       <div class="mode-switch" id="modeSwitch" role="tablist" aria-label="选择查看模式">
         <button class="mode-btn" data-mode="overview" role="tab" aria-selected="true">今日概览</button>
         <button class="mode-btn" data-mode="map" role="tab" aria-selected="false">地图模式</button>
@@ -313,21 +330,164 @@
 
     <section aria-live="polite" aria-atomic="true">
       <div class="day-head">
-        <div><p class="day-kicker" id="dayKicker"></p><h2 id="dayTitle"></h2><p class="day-desc" id="dayDesc"></p></div>
-        <div class="intensity" id="dayIntensity"></div>
+        <div><p class="day-kicker" id="dayKicker">10.20 · 周二 · 抵达日</p><h2 id="dayTitle">初见成都，太古里夜游</h2><p class="day-desc" id="dayDesc">落地、入住、散步吃饭，不给第一晚排太满。</p></div>
+        <div class="intensity" id="dayIntensity">轻松 · ★</div>
       </div>
       <div id="dayNotice"></div>
     </section>
 
-    <section class="panel active" id="overviewPanel" aria-labelledby="dayTitle"></section>
-    <section class="panel" id="mapPanel" aria-label="地图模式"></section>
-    <section class="panel" id="routePanel" aria-label="每日路线模式"></section>
+    <section class="panel active" id="overviewPanel" aria-labelledby="dayTitle"><div class="overview-grid">
+        <article class="card card-pad"><h3 class="section-title">今天按这个顺序走</h3><div class="stop-list">
+        <div class="stop-compact">
+          <div class="stop-index">1</div>
+          <div><strong>天府机场</strong><small>17:35 · 飞机抵达</small></div>
+          <a class="nav-mini" href="https://uri.amap.com/search?keyword=%E6%88%90%E9%83%BD%E5%A4%A9%E5%BA%9C%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA%20T2&amp;callnative=1" target="_blank" rel="noopener" aria-label="在高德地图中查找成都天府国际机场 T2">导航 ↗</a>
+        </div>
+        <div class="stop-compact">
+          <div class="stop-index">2</div>
+          <div><strong>酒店</strong><small>18:30 · 地铁18号线＋1号线＋3号线</small></div>
+          <a class="nav-mini" href="https://uri.amap.com/search?keyword=%E5%89%8D%E5%BE%80%E6%98%A5%E7%86%99%E8%B7%AF%E5%95%86%E5%9C%88%E9%85%92%E5%BA%97&amp;callnative=1" target="_blank" rel="noopener" aria-label="在高德地图中查找前往春熙路商圈酒店">导航 ↗</a>
+        </div>
+        <div class="stop-compact">
+          <div class="stop-index">3</div>
+          <div><strong>晚餐</strong><small>20:00 · 步行</small></div>
+          <a class="nav-mini" href="https://uri.amap.com/search?keyword=%E5%A4%AA%E5%8F%A4%E9%87%8C%E9%99%84%E8%BF%91%E6%99%9A%E9%A4%90&amp;callnative=1" target="_blank" rel="noopener" aria-label="在高德地图中查找太古里附近晚餐">导航 ↗</a>
+        </div>
+        <div class="stop-compact">
+          <div class="stop-index">4</div>
+          <div><strong>太古里夜游</strong><small>21:00 · 步行 Citywalk</small></div>
+          <a class="nav-mini" href="https://uri.amap.com/search?keyword=%E6%98%A5%E7%86%99%E8%B7%AF%20%C2%B7%20IFS%E7%86%8A%E7%8C%AB%20%C2%B7%20%E5%A4%AA%E5%8F%A4%E9%87%8C%20%C2%B7%20%E5%A4%A7%E6%85%88%E5%AF%BA%E5%A4%96%E5%9B%B4&amp;callnative=1" target="_blank" rel="noopener" aria-label="在高德地图中查找春熙路 · IFS熊猫 · 太古里 · 大慈寺外围">导航 ↗</a>
+        </div></div></article>
+        <aside class="card card-pad"><h3 class="section-title">慢游提示</h3><ul class="tips"><li><strong>今晚吃什么</strong><span>太古里附近川菜：马旺子·川小馆 / 饕林餐厅；到店先看排队。</span></li><li><strong>行走距离</strong><span>Citywalk 约1.5—2公里，累了随时回酒店。</span></li><li><strong>早点休息</strong><span>第一晚不熬夜，为后面远途日留体力。</span></li></ul></aside>
+      </div></section>
+    <section class="panel" id="mapPanel" aria-label="地图模式"><div class="map-layout">
+        <div class="card map-card">
+          <div class="map-toolbar"><span class="map-legend">路线位置示意 · 点击圆点导航</span></div>
+          <svg class="map-canvas" viewBox="0 0 800 520" role="img" aria-label="10.20路线位置示意图">
+            <defs><linearGradient id="mapGradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e8efe6"></stop><stop offset="1" stop-color="#cbdcca"></stop></linearGradient></defs>
+            <rect class="map-bg" width="800" height="520"></rect>
+            <path class="map-road" d="M-20 120 C180 230 290 90 470 190 S690 410 840 300"></path>
+            <path class="map-road" d="M110 -10 C150 150 80 330 240 550"></path>
+            <path class="map-road-thin" d="M0 400 C170 330 290 450 450 355 S700 190 820 220"></path>
+            <path class="map-road-thin" d="M350 -20 C300 180 450 280 410 540"></path>
+            <path class="route-line" d="M 658.4 403.40000000000003 L 362 210.70000000000002 L 400 187.20000000000002 L 453.2 168.4"></path>
+            <a class="marker" href="https://uri.amap.com/search?keyword=%E6%88%90%E9%83%BD%E5%A4%A9%E5%BA%9C%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA%20T2&amp;callnative=1" target="_blank" rel="noopener" aria-label="1 成都天府国际机场 T2，打开导航">
+          <circle cx="658.4" cy="403.40000000000003" r="17"></circle><text x="658.4" y="403.90000000000003">1</text>
+          <text class="marker-label" x="640.4" y="380.40000000000003" text-anchor="end">天府机场</text>
+        </a><a class="marker" href="https://uri.amap.com/search?keyword=%E5%89%8D%E5%BE%80%E6%98%A5%E7%86%99%E8%B7%AF%E5%95%86%E5%9C%88%E9%85%92%E5%BA%97&amp;callnative=1" target="_blank" rel="noopener" aria-label="2 前往春熙路商圈酒店，打开导航">
+          <circle cx="362" cy="210.70000000000002" r="17"></circle><text x="362" y="211.20000000000002">2</text>
+          <text class="marker-label" x="380" y="187.70000000000002" text-anchor="start">酒店</text>
+        </a><a class="marker" href="https://uri.amap.com/search?keyword=%E5%A4%AA%E5%8F%A4%E9%87%8C%E9%99%84%E8%BF%91%E6%99%9A%E9%A4%90&amp;callnative=1" target="_blank" rel="noopener" aria-label="3 太古里附近晚餐，打开导航">
+          <circle cx="400" cy="187.20000000000002" r="17"></circle><text x="400" y="187.70000000000002">3</text>
+          <text class="marker-label" x="418" y="164.20000000000002" text-anchor="start">晚餐</text>
+        </a><a class="marker" href="https://uri.amap.com/search?keyword=%E6%98%A5%E7%86%99%E8%B7%AF%20%C2%B7%20IFS%E7%86%8A%E7%8C%AB%20%C2%B7%20%E5%A4%AA%E5%8F%A4%E9%87%8C%20%C2%B7%20%E5%A4%A7%E6%85%88%E5%AF%BA%E5%A4%96%E5%9B%B4&amp;callnative=1" target="_blank" rel="noopener" aria-label="4 春熙路 · IFS熊猫 · 太古里 · 大慈寺外围，打开导航">
+          <circle cx="453.2" cy="168.4" r="17"></circle><text x="453.2" y="168.9">4</text>
+          <text class="marker-label" x="471.2" y="145.4" text-anchor="start">太古里夜游</text>
+        </a>
+            <text class="map-note" x="24" y="500">SCHEMATIC MAP · 非比例尺真实地图</text>
+          </svg>
+        </div>
+        <aside class="card map-side"><h3 class="section-title">路线顺序</h3><ol class="route-order"><li><b>1</b><div><strong>天府机场</strong><small>17:35 · 飞机抵达</small></div></li><li><b>2</b><div><strong>酒店</strong><small>18:30 · 地铁18号线＋1号线＋3号线</small></div></li><li><b>3</b><div><strong>晚餐</strong><small>20:00 · 步行</small></div></li><li><b>4</b><div><strong>太古里夜游</strong><small>21:00 · 步行 Citywalk</small></div></li></ol><p class="footnote">示意图用于理解方向与顺序，不用于精确定位。点击地点后由高德地图搜索最新位置和实时路线。</p></aside>
+      </div></section>
+    <section class="panel" id="routePanel" aria-label="每日路线模式"><div class="timeline">
+        <article class="timeline-item">
+          <time class="timeline-time">17:35</time>
+          <div class="card timeline-card">
+            <div class="timeline-top">
+              <div><h3>1. 成都天府国际机场 T2</h3><p>MU2653 预计17:35抵达；航班信息已订，仍以当天实际动态为准。</p></div>
+              <a class="route-nav" href="https://uri.amap.com/search?keyword=%E6%88%90%E9%83%BD%E5%A4%A9%E5%BA%9C%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA%20T2&amp;callnative=1" target="_blank" rel="noopener" aria-label="导航到成都天府国际机场 T2">导航 ↗</a>
+            </div>
+            <div class="transit"><span class="pill">飞机抵达</span><span class="pill">取行李约30—45分钟</span></div>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <time class="timeline-time">18:30</time>
+          <div class="card timeline-card">
+            <div class="timeline-top">
+              <div><h3>2. 前往春熙路商圈酒店</h3><p>天府机场T2 → 火车南站 → 省体育馆 → 春熙路；行李多可打车，约60—90分钟。</p></div>
+              <a class="route-nav" href="https://uri.amap.com/search?keyword=%E5%89%8D%E5%BE%80%E6%98%A5%E7%86%99%E8%B7%AF%E5%95%86%E5%9C%88%E9%85%92%E5%BA%97&amp;callnative=1" target="_blank" rel="noopener" aria-label="导航到前往春熙路商圈酒店">导航 ↗</a>
+            </div>
+            <div class="transit"><span class="pill">地铁18号线＋1号线＋3号线</span><span class="pill">约75—100分钟</span></div>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <time class="timeline-time">20:00</time>
+          <div class="card timeline-card">
+            <div class="timeline-top">
+              <div><h3>3. 太古里附近晚餐</h3><p>第一顿建议川菜，不必跨城区追网红店。</p></div>
+              <a class="route-nav" href="https://uri.amap.com/search?keyword=%E5%A4%AA%E5%8F%A4%E9%87%8C%E9%99%84%E8%BF%91%E6%99%9A%E9%A4%90&amp;callnative=1" target="_blank" rel="noopener" aria-label="导航到太古里附近晚餐">导航 ↗</a>
+            </div>
+            <div class="transit"><span class="pill">步行</span><span class="pill">约1小时</span></div>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <time class="timeline-time">21:00</time>
+          <div class="card timeline-card">
+            <div class="timeline-top">
+              <div><h3>4. 春熙路 · IFS熊猫 · 太古里 · 大慈寺外围</h3><p>慢慢逛一圈后回酒店，全程约1.5—2公里。</p></div>
+              <a class="route-nav" href="https://uri.amap.com/search?keyword=%E6%98%A5%E7%86%99%E8%B7%AF%20%C2%B7%20IFS%E7%86%8A%E7%8C%AB%20%C2%B7%20%E5%A4%AA%E5%8F%A4%E9%87%8C%20%C2%B7%20%E5%A4%A7%E6%85%88%E5%AF%BA%E5%A4%96%E5%9B%B4&amp;callnative=1" target="_blank" rel="noopener" aria-label="导航到春熙路 · IFS熊猫 · 太古里 · 大慈寺外围">导航 ↗</a>
+            </div>
+            <div class="transit"><span class="pill">步行 Citywalk</span><span class="pill">约1小时</span></div>
+          </div>
+        </article></div></section>
 
     <section class="planner" id="planner">
       <article class="card">
         <h2 class="section-title">出发前预约清单</h2>
-        <div class="notice"><span>⚠️</span><div><strong>10月21日先完成主会场签到</strong><p>09:40前到西博城一号馆附近，预留安检和找入口时间；下午项目可缩短，但不压缩上午主任务。</p></div></div>
-        <div class="checklist" id="checklist"></div>
+        <div class="notice"><span>⚠️</span><div><strong>10月21日先完成主会场签到</strong><p>09:40前到西博城一号馆附近；21—23日均保留午间回酒店休息，延误时缩短下午项目，不压缩休息。</p></div></div>
+        <div class="checklist" id="checklist"><label class="check-row">
+        <input type="checkbox" data-check="expo-entry">
+        <span><strong>确认西博城一号馆入口</strong><small>保存主办方通知、签到凭证与联系人信息</small></span>
+        <span class="badge ">优先</span>
+      </label><label class="check-row">
+        <input type="checkbox" data-check="dufu-ticket">
+        <span><strong>预约杜甫草堂门票</strong><small>10月23日下午，成人票参考¥50</small></span>
+        <span class="badge ">优先</span>
+      </label><label class="check-row">
+        <input type="checkbox" data-check="hello-kitty">
+        <span><strong>查看花园来信预约规则</strong><small>铁像寺水街小程序；核实观展、打卡与周边领取</small></span>
+        <span class="badge ">优先</span>
+      </label><label class="check-row">
+        <input type="checkbox" data-check="sanxingdui">
+        <span><strong>预约三星堆上午票</strong><small>参考成人票¥72，以官方为准</small></span>
+        <span class="badge ">优先</span>
+      </label><label class="check-row">
+        <input type="checkbox" data-check="sanxingdui-film">
+        <span><strong>查看“天地回响”研学课程</strong><small>在三星堆官方小程序另约场次；费用与规则以实际页面为准</small></span>
+        <span class="badge ">优先</span>
+      </label><label class="check-row">
+        <input type="checkbox" data-check="panda-valley">
+        <span><strong>预约熊猫谷门票</strong><small>10月24日上午票，成人票参考¥55</small></span>
+        <span class="badge ">优先</span>
+      </label><label class="check-row">
+        <input type="checkbox" data-check="dujiangyan">
+        <span><strong>预约都江堰门票</strong><small>计划从6号门秦堰楼入口进入</small></span>
+        <span class="badge ok">提醒</span>
+      </label><label class="check-row">
+        <input type="checkbox" data-check="lidui-rail">
+        <span><strong>购买犀浦↔离堆公园城际票</strong><small>不要误买“都江堰站”；往返留足缓冲</small></span>
+        <span class="badge ">优先</span>
+      </label><label class="check-row">
+        <input type="checkbox" data-check="ag-venue">
+        <span><strong>核实AG西南总部公开区域</strong><small>导航天府长岛数字文创园，以现场管理为准</small></span>
+        <span class="badge ok">提醒</span>
+      </label><label class="check-row">
+        <input type="checkbox" data-check="rooosy-hours">
+        <span><strong>核实Rooosy Time营业时间</strong><small>10月22日晚查看次日营业与排队情况</small></span>
+        <span class="badge ok">提醒</span>
+      </label><label class="check-row">
+        <input type="checkbox" data-check="twin-tower">
+        <span><strong>核实双子塔亮灯安排</strong><small>出发前2—3天查看“成都高新”官方信息</small></span>
+        <span class="badge ok">提醒</span>
+      </label><label class="check-row">
+        <input type="checkbox" data-check="hotel-address">
+        <span><strong>核对汉庭酒店准确地址</strong><small>春熙路商圈同名门店较多</small></span>
+        <span class="badge ok">提醒</span>
+      </label><label class="check-row">
+        <input type="checkbox" data-check="weather">
+        <span><strong>出发前查看天气与穿衣</strong><small>重点关注成都降雨、早晚温差与都江堰山区天气</small></span>
+        <span class="badge ok">提醒</span>
+      </label></div>
         <div class="official-links">
           <a href="https://www.12306.cn/" target="_blank" rel="noopener">铁路12306 ↗</a>
           <a href="https://www.sxd.cn/" target="_blank" rel="noopener">三星堆官网 ↗</a>
@@ -383,65 +543,71 @@
         ]
       },
       {
-        date:'10.21', weekday:'周三', label:'西博城主任务', title:'一号馆签到、会议中心与AG西南总部', desc:'上午只完成西博城一号馆主会场任务；下午顺路打卡会议中心和AG，休息后再去东郊记忆。', intensity:'充实 · ★★★', color:'#4e7a88',
+        date:'10.21', weekday:'周三', label:'签到＋南城夜景', title:'西博城、Kitty花园与双塔夜景', desc:'上午完成一号馆签到；中午回酒店休息，傍晚再去铁像寺水街和南城夜景。', intensity:'舒展 · ★★★', color:'#4e7a88',
         tips:[
           ['上午优先级最高', '目标09:40前抵达一号馆附近，为安检、找入口和排队留缓冲；以主办方通知的具体门区为准。'],
-          ['AG点位', '导航“AG电竞（西南总部）”或“天府长岛数字文创园”，不要误去AG电竞中心。'],
-          ['开放限制', 'AG训练办公区与会议中心内部均可能限制进入，按公开展示区和建筑外观打卡。'],
-          ['减量原则', '若签到领取超过12:30，缩短会议中心外观打卡或取消AG；酒店休息和晚间返程时间不压缩。']
+          ['午间回酒店', '签到后不再加会议中心或其他景点，直接回春熙路午餐、放下领取物并休息约1.5小时。'],
+          ['晚餐二选一', '铁像寺水街与SKP/交子大道只选一处吃正餐；另一处喝饮品或吃甜品即可。'],
+          ['减量原则', '若签到超过12:30，仍优先保证酒店休息；Kitty压缩至75—90分钟，夜景只保留双子塔。']
         ],
         stops:[
           { time:'08:15', name:'汉庭成都太古里春熙路步行街酒店', short:'酒店出发', transport:'地铁2号线→1号线 / 网约车', duration:'约70—90分钟', detail:'优先按主办方给出的入口导航；携带身份证、报名凭证和充电宝。', x:45, y:24 },
           { time:'09:40', name:'中国西部国际博览城1号馆', short:'一号馆', transport:'步行找入口＋安检', duration:'预留20分钟', detail:'提前到场确认主会场入口，不把10:00当作抵达时间。', x:70, y:80 },
-          { time:'10:00', name:'西博城一号馆主会场', short:'签到领物', transport:'场馆内步行', duration:'约2—2.5小时', detail:'完成签到、领取物品及现场事项；上午不再安排其他打卡。', x:72, y:77 },
-          { time:'12:30', name:'西博城附近午餐', short:'午餐', transport:'步行 / 短途打车', duration:'约1小时', detail:'就近吃简餐并坐下休息，不专程寻找网红店。', x:67, y:74 },
-          { time:'13:35', name:'天府国际会议中心', short:'会议中心', transport:'步行 / 短途打车', duration:'约40分钟', detail:'重点拍“天府之檐”和建筑外观；内部能否进入取决于当天会议及安保。', x:62, y:71 },
-          { time:'14:25', name:'前往AG电竞（西南总部）', short:'转场', transport:'网约车', duration:'约35—50分钟', detail:'按实时路况调整；如果上午延误超过45分钟，AG改为可取消项。', x:55, y:62 },
-          { time:'15:15', name:'AG电竞（西南总部）', short:'AG西南总部', transport:'公开区域打卡', duration:'约35—45分钟', detail:'导航天府长岛数字文创园（盛通街16号）。公开展示与可进入范围以现场管理为准，勿进入训练办公区。', x:48, y:54 },
-          { time:'16:40', name:'返回酒店休息', short:'酒店休息', transport:'网约车 / 地铁', duration:'约1小时20分', detail:'回房放好领取物品、充电和休息；晚间项目不提前。', x:45, y:29 },
-          { time:'18:30', name:'东郊记忆', short:'东郊记忆', transport:'网约车', duration:'约2小时', detail:'拍工业风建筑、逛店并吃晚餐；20:30左右离开，避免第一完整日太累。', x:76, y:36 },
-          { time:'20:45', name:'返回春熙路酒店', short:'返回酒店', transport:'网约车', duration:'约25—40分钟', detail:'回酒店休息，不再追加夜游。', x:48, y:42 }
+          { time:'10:00', name:'西博城一号馆主会场', short:'签到领物', transport:'场馆内步行', duration:'约2—2.5小时', detail:'完成签到、领取物品及现场事项；上午不安排其他景点。', x:72, y:77 },
+          { time:'12:30', name:'西博城 → 春熙路酒店', short:'返回酒店', transport:'网约车 / 地铁1号线接驳', duration:'约60—80分钟', detail:'如果现场结束较早就提前走；行李或领取物较多时优先网约车。', x:58, y:57 },
+          { time:'13:40', name:'酒店附近午餐＋回房休息', short:'午餐休息', transport:'步行', duration:'约2小时', detail:'午餐选面食、抄手或盖饭等简餐；回房放物、充电，保证至少60—90分钟真正休息。', x:46, y:32 },
+          { time:'15:40', name:'酒店 → 铁像寺水街', short:'前往水街', transport:'网约车', duration:'约35—50分钟', detail:'直接前往铁像寺路88号；以实时路况为准。', x:49, y:50 },
+          { time:'16:30', name:'铁像寺水街 Hello Kitty「花园来信」', short:'Hello Kitty展', transport:'户外步行＋茶歇', duration:'约1小时40分', detail:'按“秋日来信→花语书廊→信纸花廊→园中小憩→Hello Kitty花房→花园小屋”慢慢逛；展期至12月15日，预约和周边领取以水街小程序为准。', x:47, y:60 },
+          { time:'18:10', name:'铁像寺水街 → 成都天府双塔', short:'前往双塔', transport:'网约车', duration:'约20—30分钟', detail:'可在水街提前吃简餐，也可把正餐留到交子大道附近。', x:56, y:58 },
+          { time:'18:40', name:'成都天府双塔 · 交子之环', short:'双子塔', transport:'步行拍摄', duration:'约45分钟', detail:'从暮色拍到夜景；具体亮灯时间、图案和临时管控以当天官方公告及现场为准。', x:63, y:58 },
+          { time:'19:35', name:'成都SKP生机之塔', short:'生机之塔', transport:'网约车约10—15分钟', duration:'约30分钟', detail:'拍摄水景与塔体。若当晚疲惫，可在双子塔后直接用餐并回酒店。', x:69, y:66, optional:true },
+          { time:'20:10', name:'SKP / 交子大道附近晚餐', short:'晚餐', transport:'步行 / 短途打车', duration:'约1小时', detail:'若水街已经吃了正餐，这里只喝饮品或吃甜品；想吃川菜可选家常菜或清汤锅，避免连续重辣。', x:64, y:63 },
+          { time:'21:10', name:'返回春熙路酒店', short:'返回酒店', transport:'网约车', duration:'约30—45分钟', detail:'直接回酒店休息，不再追加夜游。', x:48, y:42 }
         ]
       },
       {
-        date:'10.22', weekday:'周四', label:'古蜀＋市井', title:'三星堆与玉林8机位 Citywalk', desc:'白天看古蜀文明，回酒店休息后只逛玉林，把双塔夜景移到次日。', intensity:'舒缓 · ★★☆', color:'#d99a42',
+        date:'10.22', weekday:'周四', label:'古蜀＋工业风', title:'三星堆与东郊记忆', desc:'上午专注三星堆；午餐后返回酒店休息，傍晚只逛东郊记忆核心区。', intensity:'舒展 · ★★★', color:'#d99a42',
         tips:[
           ['更轻松的交通', '两人可考虑春熙路直接打车去三星堆，减少换乘与候车。'],
           ['门票提醒', '三星堆日间票每日20:00放票，可提前5天预约；优先预约上午入馆。'],
           ['天地回响', '据所提供攻略，需在官方购票小程序旁的“研学课程”分时预约；2026年10月场次、年龄限制与是否免费，以小程序实际页面为准。'],
-          ['晚餐二选一', '想轻松：玉林综合市场吃小吃；想坐下来：选玉林附近锦城印象火锅。当天不再赶双塔。']
+          ['午间回酒店', '广汉午餐后直接回春熙路酒店，保证至少1小时休息；东郊记忆放到傍晚，逛核心区即可。']
         ],
         stops:[
           { time:'07:30', name:'酒店出发前往三星堆博物馆', short:'酒店出发', transport:'推荐网约车；或高铁＋打车', duration:'直达约60—90分钟', detail:'高铁方案需额外预留换乘；具体车次尚未记录为已确认。', x:46, y:76 },
           { time:'09:00', name:'三星堆博物馆', short:'三星堆', transport:'馆内步行', duration:'约4小时', detail:'重点：青铜神树、纵目面具、黄金面具、青铜大立人。若约到“天地回响”，按预约场次倒排展厅；该项目需在官方小程序“研学课程”另约，以实际页面为准。成人票¥72。', x:69, y:23 },
-          { time:'13:00', name:'广汉午餐后返回成都', short:'广汉午餐', transport:'网约车 / 高铁接驳', duration:'约2小时', detail:'午餐后返回酒店；不要再叠加文殊院或宽窄巷子。', x:62, y:31 },
-          { time:'15:30', name:'返回酒店休息', short:'酒店休息', transport:'—', duration:'约1小时40分', detail:'补充体力并给手机充电；晚间步行较多，不压缩这段休息。', x:46, y:71 },
-          { time:'17:20', name:'倪家桥地铁站 E口', short:'玉林起点', transport:'地铁 / 网约车', duration:'集合约10分钟', detail:'从E口开始单向走，不在玉林街区来回找点。', x:31, y:61 },
-          { time:'17:30', name:'院子文化创意园', short:'院子文创园', transport:'步行 Citywalk', duration:'8机位约70—90分钟', detail:'院子文创园→“在成都”墙→玉芳苑熊猫涂鸦→转角隐藏墙→小猫墙→马路对面两处墙面→民谣自由墙。墙绘可能更新，按现场沿玉林西路单向寻找，不为漏掉一个机位折返。', x:35, y:58 },
-          { time:'18:50', name:'玉林综合市场', short:'玉林市场', transport:'步行', duration:'小吃约40—50分钟', detail:'可选剪刀土豆、玉米饼、烧椒面；摊位与营业状态会变化。若去锦城印象火锅，这里只少量试吃。', x:39, y:56 },
-          { time:'19:40', name:'锦城印象火锅', short:'火锅可选', transport:'步行 / 短途打车', duration:'约75—90分钟', detail:'若市场小吃已经吃饱则直接跳过；先在地图选择玉林附近营业分店，排队情况以当晚为准。', x:44, y:59, optional:true },
-          { time:'20:30', name:'返回春熙路酒店', short:'返回酒店', transport:'网约车', duration:'约20—35分钟', detail:'小吃版本约20:30返程；火锅版本约21:15返程，当天不再追加夜景。', x:47, y:76 }
+          { time:'13:00', name:'广汉午餐', short:'广汉午餐', transport:'短途打车 / 步行', duration:'约1小时', detail:'可选连山回锅肉、金丝面或缠丝兔；两人少点菜，避免下午过饱。兔类菜偏咸辣，可先问口味。', x:63, y:31 },
+          { time:'14:00', name:'广汉 → 春熙路酒店', short:'返回酒店', transport:'推荐网约车；或高铁＋地铁', duration:'约60—90分钟', detail:'网约车更省换乘；高铁方案按当日真实票务安排，未记录为已确认班次。', x:56, y:49 },
+          { time:'15:20', name:'酒店午休', short:'酒店休息', transport:'—', duration:'约1小时30分', detail:'补充体力、给手机充电；不压缩这段休息去增加景点。', x:47, y:67 },
+          { time:'16:50', name:'酒店 → 东郊记忆', short:'前往东郊', transport:'网约车', duration:'约25—40分钟', detail:'傍晚错峰出发；到园区后只走工业风核心区。', x:61, y:55 },
+          { time:'17:30', name:'东郊记忆工业风 Citywalk', short:'东郊记忆', transport:'园区内慢走', duration:'约2小时', detail:'重点看老厂房、火车头、烟囱与文创店；中途可坐下喝咖啡，不叠加沙河公园长距离散步。', x:80, y:40 },
+          { time:'19:30', name:'东郊记忆 / 建设路附近晚餐', short:'晚餐', transport:'步行 / 短途打车', duration:'约1小时15分', detail:'想坐得舒服可选园区川菜；想少量多样可去建设路吃锅盔、冒菜、冰粉等小吃。博物馆日不建议再吃过辣重油。', x:76, y:46 },
+          { time:'20:45', name:'返回春熙路酒店', short:'返回酒店', transport:'网约车', duration:'约25—40分钟', detail:'回酒店后不再追加夜游。', x:48, y:72 }
         ]
       },
       {
-        date:'10.23', weekday:'周五', label:'草堂＋Kitty', title:'Rooosy Time、杜甫草堂与花园来信', desc:'上午慢慢逛草堂，下午回酒店休息；傍晚看Hello Kitty展并顺路拍双塔夜景。', intensity:'舒展 · ★★★', color:'#4e7a88',
+        date:'10.23', weekday:'周五', label:'咖啡＋人文', title:'Rooosy、AG、杜甫草堂与玉林路', desc:'上午把太平寺片区的Rooosy与AG连在一起；午间回酒店休息，下午草堂、傍晚玉林。', intensity:'舒展 · ★★★', color:'#4e7a88',
         tips:[
           ['草堂走法', '西门（正门）进，沿中轴与园林单向游览，南门出；不要为了找遗漏点位折返。'],
-          ['花园来信', '展期为10月16日—12月15日，六个户外点位分布在铁像寺水街；提前查看水街小程序预约和打卡规则。'],
-          ['夜景减量', '双子塔为主，生机之塔为可选；若Hello Kitty展逛得久或买周边排队，直接跳过生机之塔。'],
-          ['营业核实', 'Rooosy Time的营业和排队情况在前一晚确认；若临时闭店，酒店早餐后直接去草堂。']
+          ['AG点位', '导航“AG电竞（西南总部）”或“天府长岛数字文创园（盛通街16号）”，只在公开区域打卡。'],
+          ['午间回酒店', 'AG附近简餐后回酒店休息约75分钟；下午14:15再出发，不用连续走一整天。'],
+          ['减量原则', '若草堂结束后脚累，玉林只保留4—5个核心机位；市场小吃和火锅只选一种主线。']
         ],
         stops:[
-          { time:'08:45', name:'酒店 → Rooosy Time', short:'酒店出发', transport:'网约车', duration:'约35—50分钟', detail:'前一晚确认营业时间和排队情况；若不营业，直接在酒店附近早餐。', x:45, y:28 },
-          { time:'09:30', name:'Rooosy Time', short:'Rooosy Time', transport:'早餐＋店内休息', duration:'约1小时15分', detail:'位于太平寺西路3号梵木Flying国际文创公园。控制停留时间，10:45左右离开。', x:28, y:48 },
-          { time:'11:20', name:'杜甫草堂博物馆西门（正门）', short:'草堂西门', transport:'网约车约25—40分钟', duration:'入馆准备约10分钟', detail:'官方常规开放9:00—18:00、17:00停止售票，成人票¥50；携带身份证并提前查看预约。', x:28, y:32 },
-          { time:'11:30', name:'杜甫草堂高效单向路线', short:'杜甫草堂', transport:'馆内步行', duration:'约2小时40分', detail:'大廨→诗史堂→柴门→工部祠→少陵碑亭→茅屋故居→花径→盆景园→兰园→浣花祠→千诗碑→文创店→李杜堂→景杜堂→大雅堂，南门出。', x:32, y:34 },
-          { time:'14:15', name:'草堂南门附近午餐', short:'午餐', transport:'步行', duration:'约50分钟', detail:'就近吃饭，不额外加入浣花溪长距离散步。', x:35, y:38 },
-          { time:'15:40', name:'返回酒店休息', short:'酒店休息', transport:'网约车', duration:'约1小时25分', detail:'回房休息和充电；晚间水街步行前保留完整休息。', x:46, y:30 },
-          { time:'17:45', name:'铁像寺水街 Hello Kitty「花园来信」', short:'Hello Kitty展', transport:'网约车', duration:'展览＋晚餐约2小时', detail:'按“秋日来信→花语书廊→信纸花廊→园中小憩→Hello Kitty花房→花园小屋”顺序漫游；展期至12月15日，预约、周边领取和营业时间以水街小程序为准。', x:48, y:65 },
-          { time:'20:05', name:'成都天府双塔 · 交子之环', short:'双子塔', transport:'网约车约15—25分钟', duration:'约40分钟', detail:'拍双塔与交子之环夜景；具体亮灯内容以当天现场和官方公告为准。', x:59, y:62 },
-          { time:'21:00', name:'成都SKP生机之塔', short:'生机之塔', transport:'网约车约10—15分钟', duration:'约25分钟', detail:'可选项目。若水街逛久、晚餐较晚或已经疲惫，直接从双子塔回酒店。', x:66, y:70, optional:true },
-          { time:'21:35', name:'返回春熙路酒店', short:'返回酒店', transport:'网约车', duration:'约30—45分钟', detail:'结束当天行程，不再追加夜游。', x:47, y:80 }
+          { time:'08:45', name:'酒店 → Rooosy Time', short:'酒店出发', transport:'网约车', duration:'约35—50分钟', detail:'前一晚确认营业时间和排队情况；若不营业，在酒店附近早餐后直接去AG。', x:45, y:28 },
+          { time:'09:30', name:'Rooosy Time', short:'Rooosy Time', transport:'早餐＋店内休息', duration:'约1小时', detail:'位于太平寺西路3号梵木Flying国际文创公园。把这里当作早餐和上午休息点。', x:28, y:48 },
+          { time:'10:35', name:'Rooosy Time → AG电竞（西南总部）', short:'前往AG', transport:'网约车', duration:'约15—25分钟', detail:'导航天府长岛数字文创园（盛通街16号），不要误去AG电竞中心。', x:34, y:51 },
+          { time:'11:00', name:'AG电竞（西南总部）', short:'AG西南总部', transport:'公开区域打卡', duration:'约40分钟', detail:'以园区公开展示区和建筑外观为主；可进入范围以现场管理为准，勿进入训练办公区。', x:38, y:53 },
+          { time:'11:45', name:'AG附近简餐', short:'午餐', transport:'步行 / 短途打车', duration:'约40分钟', detail:'Rooosy若吃了完整早餐，这里只补充面食、抄手或小份盖饭，不排长队。', x:40, y:50 },
+          { time:'12:25', name:'AG → 春熙路酒店', short:'返回酒店', transport:'网约车', duration:'约35—50分钟', detail:'回酒店后直接休息，下午再向西去草堂。', x:45, y:43 },
+          { time:'13:10', name:'酒店午休', short:'酒店休息', transport:'—', duration:'约1小时05分', detail:'放下随身物、充电和休脚；14:15左右再出发。', x:47, y:34 },
+          { time:'14:15', name:'酒店 → 杜甫草堂西门（正门）', short:'前往草堂', transport:'网约车', duration:'约25—35分钟', detail:'目标15:00前入馆；官方常规17:00停止售票，遇拥堵及时下车步行。', x:37, y:36 },
+          { time:'14:50', name:'杜甫草堂高效单向路线', short:'杜甫草堂', transport:'馆内步行', duration:'约2小时20分', detail:'西门进：大廨→诗史堂→柴门→工部祠→少陵碑亭→茅屋故居→花径→盆景园→兰园→浣花祠→千诗碑→文创店→李杜堂→景杜堂→大雅堂，南门出。成人票参考¥50。', x:27, y:33 },
+          { time:'17:15', name:'草堂南门 → 倪家桥地铁站E口', short:'前往玉林', transport:'网约车', duration:'约20—30分钟', detail:'到倪家桥后先坐下喝水10分钟，再开始单向Citywalk。', x:34, y:48 },
+          { time:'17:50', name:'玉林路8机位 Citywalk', short:'玉林拍照', transport:'步行', duration:'约70分钟', detail:'倪家桥E口→院子文化创意园→“在成都”墙→玉芳苑熊猫涂鸦→转角隐藏墙→小猫墙→马路对面两处墙面→民谣自由墙。墙绘会更新，漏一个也不折返。', x:39, y:57 },
+          { time:'19:00', name:'玉林综合市场', short:'市场小吃', transport:'步行', duration:'约40分钟', detail:'可选剪刀土豆、玉米饼、烧椒面；若准备吃火锅，只少量试吃。摊位与营业状态以当天为准。', x:42, y:60 },
+          { time:'19:45', name:'锦城印象火锅（玉林附近分店）', short:'火锅可选', transport:'步行 / 短途打车', duration:'约75—90分钟', detail:'与市场小吃二选一。若已经吃饱或脚累，直接取消火锅回酒店；出发前在地图确认营业分店与排队。', x:46, y:62, optional:true },
+          { time:'20:30', name:'返回春熙路酒店', short:'返回酒店', transport:'网约车', duration:'约20—35分钟', detail:'小吃版本约20:30返程；火锅版本约21:15返程。', x:48, y:76 }
         ]
       },
       {
@@ -484,7 +650,7 @@
 
     const checklistItems = [
       { id:'expo-entry', title:'确认西博城一号馆入口', note:'保存主办方通知、签到凭证与联系人信息', urgent:true },
-      { id:'dufu-ticket', title:'预约杜甫草堂门票', note:'10月23日上午，成人票参考¥50', urgent:true },
+      { id:'dufu-ticket', title:'预约杜甫草堂门票', note:'10月23日下午，成人票参考¥50', urgent:true },
       { id:'hello-kitty', title:'查看花园来信预约规则', note:'铁像寺水街小程序；核实观展、打卡与周边领取', urgent:true },
       { id:'sanxingdui', title:'预约三星堆上午票', note:'参考成人票¥72，以官方为准', urgent:true },
       { id:'sanxingdui-film', title:'查看“天地回响”研学课程', note:'在三星堆官方小程序另约场次；费用与规则以实际页面为准', urgent:true },
@@ -492,7 +658,7 @@
       { id:'dujiangyan', title:'预约都江堰门票', note:'计划从6号门秦堰楼入口进入', urgent:false },
       { id:'lidui-rail', title:'购买犀浦↔离堆公园城际票', note:'不要误买“都江堰站”；往返留足缓冲', urgent:true },
       { id:'ag-venue', title:'核实AG西南总部公开区域', note:'导航天府长岛数字文创园，以现场管理为准', urgent:false },
-      { id:'venue', title:'查看会议中心当天活动', note:'确认10月21日开放入口与内部限制', urgent:false },
+      { id:'rooosy-hours', title:'核实Rooosy Time营业时间', note:'10月22日晚查看次日营业与排队情况', urgent:false },
       { id:'twin-tower', title:'核实双子塔亮灯安排', note:'出发前2—3天查看“成都高新”官方信息', urgent:false },
       { id:'hotel-address', title:'核对汉庭酒店准确地址', note:'春熙路商圈同名门店较多', urgent:false },
       { id:'weather', title:'出发前查看天气与穿衣', note:'重点关注成都降雨、早晚温差与都江堰山区天气', urgent:false }
@@ -649,5 +815,6 @@
     $('#todayBtn').addEventListener('click', () => { selectDay(0, true); setMode('route'); });
     $('#shareBtn').addEventListener('click', shareTrip);
   </script>
-</body>
-</html>
+
+
+</body></html>
